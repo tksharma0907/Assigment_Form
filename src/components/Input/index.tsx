@@ -23,7 +23,7 @@ const Input = ({ label, id, rules, control }: TextProps) => {
                     helperText={error ? error.message : null}
                 />
             )}
-            rules={{ required: `${id} is required` }}
+            rules={rules}
         />
     );
 };

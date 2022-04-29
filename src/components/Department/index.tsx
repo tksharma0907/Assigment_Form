@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Btn from "../Button";
 import Label from "../Label";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
 
 const data = {
     text: "Great! What department do you work in?",
@@ -18,29 +20,23 @@ const data = {
 };
 
 const Department: React.FC = () => {
+    const router = useRouter();
+    const { control, handleSubmit } = useForm({ mode: "onChange" });
+
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "100vh",
-            }}
-        >
+        <form onSubmit={handleSubmit((data) => console.log(data))}>
             <Label label={data.text} />
             <div>
                 {data.button.map((btn: { label: string }) => {
                     return (
-                        <Link href={"/email"}>
-                            <a style={{ textDecoration: "none" }}>
-                                <Btn label={btn.label} />
-                            </a>
-                        </Link>
+                        <Btn
+                            label={btn.label}
+                            onclick={() => router.push("/email")}
+                        />
                     );
                 })}
             </div>
-        </div>
+        </form>
     );
 };
 

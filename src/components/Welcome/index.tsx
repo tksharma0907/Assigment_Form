@@ -1,46 +1,39 @@
 import Btn from "@components/Button";
 import Label from "@components/Label";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const wel = {
     text: "Welcome!😊 What are you looking for?",
     button: [
         {
             label: "Lead generation bots",
-            link: "/search",
         },
         {
             label: "Multi-step forms",
-            link: "/search",
         },
         {
             label: "Integration",
-            link: "/search",
         },
     ],
 };
 
 const Welcome: React.FC = () => {
+    const router = useRouter();
+
+    const { handleSubmit } = useForm({ mode: "onChange" });
+
     return (
-        <form
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "100vh",
-            }}
-        >
+        <form onSubmit={handleSubmit((data) => console.log(data))}>
             <Label label={wel.text} />
             <div>
                 {wel.button.map((btn) => {
                     return (
-                        <Link href="/Dept">
-                            <a style={{ textDecoration: "none" }}>
-                                <Btn label={btn.label} />
-                            </a>
-                        </Link>
+                        <Btn
+                            label={btn.label}
+                            onclick={() => router.push("/Dept")}
+                        />
                     );
                 })}
             </div>

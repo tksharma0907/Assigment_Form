@@ -1,8 +1,8 @@
 import Company from "@components/Company";
 import React from "react";
 
-function company() {
+const company = () => {
     return <Company />;
-}
+};
 
 export default company;

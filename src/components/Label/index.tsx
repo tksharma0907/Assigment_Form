@@ -6,7 +6,14 @@ type LabelProps = {
 const Label = ({ label }: LabelProps) => {
     return (
         <>
-            <h3>{label}</h3>
+            <h3
+                style={{
+                    marginLeft: "15px",
+                    width: "320px",
+                }}
+            >
+                {label}
+            </h3>
         </>
     );
 };
